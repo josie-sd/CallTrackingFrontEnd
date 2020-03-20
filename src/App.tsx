@@ -1,8 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as Services from './functions/support-tools-service';
+import { NumberService, AssignmentService } from './interfaces/client-interface';
 
-function App() {
+const App = () => {
+  const numberClient: NumberService = {
+    PortOrganicNumber: Services.PortOrganicNumber,
+    PortPaidNumber: Services.PortPaidNumber,
+    RingToTemplates: Services.RingToTemplates
+  }
+  const assignmentClient: AssignmentService = {
+    ActiveCampaigns: Services.ActiveCampaigns,
+    AddAssignment: Services.AddAssignment
+  }
+  
   return (
     <div className="App">
       <header className="App-header">

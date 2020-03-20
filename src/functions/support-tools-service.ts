@@ -1,5 +1,6 @@
 import { PpcPortRequest, OrganicPortRequest } from "../interfaces/phone-number-interface";
-import { AssignmentRequest } from "../interfaces/assignment-interface";
+import { AssignmentRequest, PhoneAssignment } from "../interfaces/assignment-interface";
+import { RingToTemplate } from '../interfaces/phone-number-interface';
 
 const Endpoints = {
     Numbers: 'https://localhost:44357/api/phonenumber/',
@@ -21,7 +22,11 @@ export async function SupportToolsService(endpoint: string, method: string, body
 };
 
 export const RingToTemplates = (clientId: number) => {
-    return SupportToolsService(`${Endpoints.Numbers}/RingToTemplates`, Methods.Post, { "ClientId": clientId });
+    return SupportToolsService(`${Endpoints.Numbers}/RingToTemplates`, Methods.Post, { "ClientId": clientId }).then(data => {
+        let json = JSON.parse(data)
+        let templates: Array<RingToTemplate> = json
+        return templates
+    });
 }
 
 export const PortPaidNumber = (request: PpcPortRequest) => {
@@ -33,7 +38,7 @@ export const PortPaidNumber = (request: PpcPortRequest) => {
         "RingTo": request.RingTo,
         "TemplateId": request.TemplateId 
     }
-    return SupportToolsService(`${Endpoints.Numbers}/PortPaidNumber`, Methods.Post, body);
+    SupportToolsService(`${Endpoints.Numbers}/PortPaidNumber`, Methods.Post, body);
 }
 
 export const PortOrganicNumber = (request: OrganicPortRequest) => {
@@ -45,11 +50,15 @@ export const PortOrganicNumber = (request: OrganicPortRequest) => {
         "RingTo": request.RingTo,
         "TemplateId": request.TemplateId 
     }
-    return SupportToolsService(`${Endpoints.Numbers}/PortOrganicNumber`, Methods.Post, body);
+    SupportToolsService(`${Endpoints.Numbers}/PortOrganicNumber`, Methods.Post, body);
 }
 
-export const ActiveCampaigns = (ProjectId: number) => {
-    return SupportToolsService(`${Endpoints.Assignments}/ActiveCampaigns`, Methods.Post, { "ProjectId": ProjectId });
+export const ActiveCampaigns = (projectId: number) => {
+    return SupportToolsService(`${Endpoints.Assignments}/ActiveCampaigns`, Methods.Post, { "ProjectId": projectId }).then(data => {
+        let json = JSON.parse(data)
+        let assignments: Array<PhoneAssignment> = json;
+        return assignments;
+    });
 }
 
 export const AddAssignment = (request: AssignmentRequest) => {
