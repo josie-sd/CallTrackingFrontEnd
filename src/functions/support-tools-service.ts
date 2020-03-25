@@ -21,7 +21,7 @@ export async function SupportToolsService(endpoint: string, method: string, body
 	return result;
 };
 
-export const RingToTemplates = (clientId: number) => {
+export const GetRingToTemplates = (clientId: number) => {
     return SupportToolsService(`${Endpoints.Numbers}/RingToTemplates`, Methods.Post, { "ClientId": clientId }).then(data => {
         let json = JSON.parse(data)
         let templates: Array<RingToTemplate> = json
