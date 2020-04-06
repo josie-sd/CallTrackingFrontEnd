@@ -1,4 +1,4 @@
-export interface RingToTemplate{
+export interface RingToTemplate {
     TemplateId: number
     ClientId: number
     RingTo: string
@@ -18,7 +18,7 @@ export interface RingToTemplate{
     CallReportEmail_BCC?: string
 }
 
-export interface CallTrackingNumber{
+export interface CallTrackingNumber {
     NumberId: number
     ProjectId: number
     Number: string
@@ -34,19 +34,16 @@ export interface CallTrackingNumber{
     DateDeleted?: Date
 }
 
-export interface OrganicPortRequest{
-    Number: string 
-    ProjectId: number 
-    RingTo: string 
-    TemplateId?: number
-    Country: string  
+export interface IRingToTemplate {
+    SetTemplate: (template: RingToTemplate) => void,
+    ActiveTemplate?: RingToTemplate,
+    SetClient: (client: number) => void,
+    Client: number
 }
 
-export interface PpcPortRequest{
-    Number: string 
-    ProjectId: number 
-    RingTo: string 
-    TemplateId?: number
-    CampaignId: number
-    Country: string 
+export interface RemovedNumber {
+    PhoneNumber: string,
+    DateDeleted: Date,
+    ModifiedBy: string,
+    Campaign: string
 }

@@ -1,0 +1,100 @@
+.app{
+    background-color: #f2f2f5;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .scorpion-header{
+        text-align: center;
+        width: 100%;
+        background-color: #86898f;
+        height: 3em;
+        padding-top: 1.5em;
+
+        .bug svg{
+            height: 100%;
+        }
+    }
+    .nav-banner{
+        height: 7.5em;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-btn{
+        margin-top: 1.5em;
+        height: 3em;
+        margin: 3em;
+    }
+
+    
+}
+
+.yr-a-wizard-arry{
+    display: flex;
+    justify-items: baseline;
+    justify-content: left;
+    flex-wrap: wrap;
+
+    .toggle-banner{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .toggle-btn{
+        width: 20em;
+        height: 3em;
+        background-color: #bcbec7;
+    }
+    .toggle-btn.active{
+        background-color: #007ffd;
+    }
+
+    .porting-checklist{
+        background-color: #bcbec7;
+        padding-left: 1em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        width: 15%;
+        .req{
+            input{
+                float: right;
+                margin-right: 3em;
+            }
+        }
+    }
+    .porting-checklist.warn{
+        background-color: lightgoldenrodyellow;
+    }
+    .porting-checklist.happy{
+        background-color: lightgreen;
+    }
+
+    .input-window{
+        display: flex;
+        width: 80%;
+        height: 100%;
+        flex-wrap: wrap;
+        padding-top: 1em;
+        padding-left: 1em;
+    }
+
+    .wizrd-input{
+        display: flex;
+        width:100%;
+        label{
+            margin-right: 1em;
+        }
+    }
+
+    .nav-footer{
+        display: flex;
+        background-color: #86898f;
+        justify-content: center;
+        width: 100%;
+        input{
+            margin-left: 3em;
+            width: 10em;
+            height: 3em;
+        }
+    }
+}

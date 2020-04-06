@@ -1,4 +1,5 @@
 export interface PhoneAssignment {
+    Id: number,
     ClientId: number
     ProjectId: number
     PhoneNumber: string
@@ -11,7 +12,24 @@ export interface PhoneAssignment {
     PhoneNumberId: number
 }
 
-export interface AssignmentRequest {
+export interface AssignmentDetails {
+    Id: number,
+    ClientId: number
+    ProjectId: number
     PhoneNumber: string
-    CampaignId: number
+    Campaign: string
+    Active: boolean
+    ModifiedBy: string
+    Existing?: boolean
+}
+
+export interface Campaign {
+    Id: number,
+    Name: string
+}
+
+export interface ICampaign {
+    SetCampaign: (campaign: Campaign) => void,
+    ActiveCampaign?: Campaign,
+    Project: number 
 }

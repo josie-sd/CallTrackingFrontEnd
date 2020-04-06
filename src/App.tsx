@@ -1,44 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import * as Services from './functions/support-tools-service';
-import { NumberService, AssignmentService } from './interfaces/client-interface';
-import { RingToTemplates } from './components/ring-to-templates';
+import React, { useState } from 'react';
+import { Assignment } from './components/add-assignment';
+import './styles/_app.scss';
+import { ScorpionIcon } from './styles/logo';
+import { PortingWizard } from './components/porting-wizard';
+import { RemovedNumbers } from './components/removed-numbers';
+import { MoveNumber } from './components/move-number';
 
 const App = () => {
   const [page, setPage] = useState<string>('Menu');
 
   const renderPage =(p: string) => {
-    if(p == 'RingToTemplates') {
-      return <RingToTemplates Back={() => { console.log('I am trying'); setPage(() => "Menu") }} />
+    if(p === 'Menu') {
+      return (
+        <div className="nav-banner">
+          <input id="PortingWizard" className='nav-btn' type="button" value="Port Number" onClick={() => { setPage(() => 'PortingWizard')}} />
+          <input id="AddAssignment" className='nav-btn' type="button" value="Add Assignment"  onClick={() => { setPage(() => 'AddAssignment')}} />
+          <input id="RemovedNumber" className='nav-btn' type="button" value="Restore Removed Number"  onClick={() => { setPage(() => 'RemovedNumber')}} />
+          <input id="MoveNumber" className='nav-btn' type="button" value="Move Number"  onClick={() => { setPage(() => 'MoveNumber')}} />
+        </div>
+      );
     }
+    if(p === 'PortingWizard') return <PortingWizard Back={() => { setPage(() => "Menu") }} /> 
+    if(p === 'AddAssignment') return <Assignment Back={() => { setPage(() => "Menu") }} /> 
+    if(p === 'RemovedNumber') return <RemovedNumbers Back={() => { setPage(() => "Menu") }} /> 
+    if(p === 'MoveNumber') return <MoveNumber Back={() => { setPage(() => "Menu") }} /> 
   }
 
   let content = (
     <React.Fragment>
-      <div className="App">
-        <input id="PortOrganicNumber" type="button" value="Port Organic Number" />
-        <input id="PortPaidNumber" type="button" value="Port Paid Number" />
-        <input id="RingToTemplates" type="button" value="Ring To Templates" onClick={() => { console.log('Page status = ', page); setPage(() => 'RingToTemplates')}}/>
-        <input id="ActiveCampaigns" type="button" value="Active Campaigns" />
-        <input id="AddAssignment" type="button" value="Add Assignment" />
+      <div className="app">
+      <div className='scorpion-header'><span className='bug'>{ ScorpionIcon() }</span></div>
         {renderPage(page)}
       </div>
     </React.Fragment>
   );
   
-
-  const numberClient: NumberService = {
-    PortOrganicNumber: Services.PortOrganicNumber,
-    PortPaidNumber: Services.PortPaidNumber,
-    RingToTemplates: Services.GetRingToTemplates
-  }
-  const assignmentClient: AssignmentService = {
-    ActiveCampaigns: Services.ActiveCampaigns,
-    AddAssignment: Services.AddAssignment
-  }
-  
-
   return content
 }
 
